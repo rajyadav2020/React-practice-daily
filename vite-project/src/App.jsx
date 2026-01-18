@@ -1,51 +1,33 @@
-import Card from "./components/Card";
-import Header from "./components/header";
-import "./App.css"
-import Footer from "./components/Footer";
-import arr from "./utils/dummy";
-import { useState } from "react";
-
-
+import { useState,useEffect } from "react";
+import "./bgc.css"
 
 function App(){
 
-  let [A,setA] = useState(arr);
-
-  function sortarray(){
-    A.sort((a,b)=>a.price - b.price );
-    setA([...A]);
+  //re-render ; call the function again
+  //useeffect hook
+  //this takes the call back function and a dependency
   
-  }
 
-  function above500(){
-    const B = arr.filter((value)=>value.price>499 );
-    setA(B);
-  }
+  const [color,setcolor] = useState("black");
 
-  function above20(){
-    const C = arr.filter((value)=>value.offer>20 )
-    setA(C);
-  }
+  useEffect(() =>{
+    document.body.style.backgroundColor = color;
+  },[color])
 
-
+  
   return(
     <>
-    {/* header */}
-    <Header></Header>
-    <button onClick={sortarray}>Sort by price</button>
-    <button onClick={above500}>Price above 499</button>
-    {/* <button onClick={above20}>Discount Range:20% and above</button> */}
-
-
-    <div className="middle" style={{display:"flex",gap:"15px",flexWrap:"wrap"}}>
-    {
-      A.map((value,index)=><Card cloth={value.cloth} off={value.offer} price={value.price} />)
-    }
-   
+    <h1>Background Color changer</h1>
+    <div className="button">
+      <button style={{backgroundColor:"red"}} onClick={()=>setcolor("red")}>Red</button>
+      <button  style={{backgroundColor:"blue"} } onClick={()=>setcolor("blue")} >Blue</button>
+      <button  style={{backgroundColor:"orange"}} onClick={()=>setcolor("orange")} >Orange</button>
+      <button  style={{backgroundColor:"green"}} onClick={()=>setcolor("green")} >Green</button>
+      <button  style={{backgroundColor:"pink"}} onClick={()=>setcolor("pink")}>Pink</button>
     </div>
-    <Footer></Footer>
     </>
   )
 }
+
 
 export default App;
