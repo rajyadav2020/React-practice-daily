@@ -1,33 +1,59 @@
-import { useState,useMemo } from 'react'
+import { useState,useMemo,useRef } from 'react'
+import "./App.css"
 
 
-function App() {
-  const [count, setCount] = useState(0)
-  const [number,setnumber] = useState(null);
 
-  function Fibonacci(n){
-    if(n<=1)
-      return n;
 
-    return Fibonacci(n-1)+Fibonacci(n-2);
+
+function Stopwatch(){
+
+  const [time,setTime] = useState(0);
+  const [running,setrunning] = useState(false);
+  const intervalref = useRef(null);
+  function start(){
+    if(!running){
+   intervalref.current =   setInterval(()=>{
+      setTime(prevtime=>prevtime+1 )
+    } ,1000)
+    setrunning(true);
+  }
+  
   }
 
-  const result = useMemo(()=>Fibonacci(number),[number] )
-  
 
-  return (
+
+  function stop(){
+    if(running){
+    clearInterval(intervalref.current)
+    intervalref.current = null;
+    setrunning(false);
+    }
+
+  }
+
+  function reset(){
+    clearInterval(intervalref.current)
+    intervalref.current = null;
+    setTime(0);
+
+  }
+
+
+  return(
     <>
-    <h1>Count is:{count}</h1>
-    <button onClick={()=>setCount(count+1)}>Increment</button>
-    <button onClick={()=>setCount(count-1)}>Decrement</button>
+    <div className='stopwatch'>
+    <h1>Stopwatch is: {time}</h1>
 
-    <div>
+    <div className='buttons'>
 
-    <h1>Fibonnaci number is:{result} </h1>
-    <input type="number" onChange={(e)=>{setnumber(e.target.value)} } />
+    <button onClick={start}>start</button>
+    <button onClick={stop}>stop</button>
+    <button onClick={reset}>reset</button>
+    </div>
+
     </div>
     </>
   )
 }
 
-export default App;
+export default Stopwatch;
