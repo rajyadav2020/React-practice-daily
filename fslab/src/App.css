@@ -1,0 +1,48 @@
+body{
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* 
+.main{
+  
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+
+}
+
+.tasks{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 150px;
+ 
+  
+
+}
+
+.search{
+
+  height: 30px;
+  width: 350px;
+  border-radius: 9px;
+  font-size: 19px;
+ 
+}
+
+button{
+  margin-left: 20px;
+  height: 35px;
+  background-color: rgb(83, 148, 239);
+  border-radius: 5px;
+}
+
+
+ul{
+  background-color: lightgreen;
+} */
