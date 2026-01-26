@@ -1,7 +1,4 @@
-import { useState } from "react"
-import { useSelector } from "react-redux"
-import Foodcart from "../foodcart"
-
+import { useState } from "react";
 const fooditems = [
   
   {id:1,food:"pizza",price:"200",},
@@ -16,26 +13,26 @@ const fooditems = [
   {id:10, food:"garlic bread", price:"110"}
   
 ]
-
-export default function Card(){
-
-
+export default function Foodcart(value){
+  const [incart,setincart] = useState(false);
+  function handleclick(){
+    if(incart){
+      setincart(false);
+    }else{
+      setincart(true);
+    }
+  }
 
   return(
     <>
-    <div style={{display:"flex",justifyContent:"center",flexWrap:"wrap",gap:"10px"}}>
-      {fooditems.map( (value)=>{
-        return (
-          <div key={value.id}>
-            <Foodcart value = {value}></Foodcart>
- 
-          </div>
-        )
-      })}
-    </div>
+      <h1>{value.food}</h1>
+      <h1>{value.price}</h1>
+      <button onClick={handleclick}>{
+              incart?"Remove":"Add"
+              }</button>
 
     </>
   )
 
-}
 
+}
